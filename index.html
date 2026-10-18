@@ -5,65 +5,106 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>منصة التعميد · أهداف</title>
 <meta name="description" content="حملات أهداف ومحتواها جاهز للتعميد">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
 <style>
-@font-face{font-family:SS;src:url(a/SaudiSerif-Regular.ttf);font-weight:400}
-@font-face{font-family:SS;src:url(a/SaudiSerif-Bold.ttf);font-weight:700}
-:root{--p:#4C0192;--ink:#111;--mut:#6b6477;--line:#e6e0ee;--bg:#fbfafd;--ok:#1f7a4d}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:SS,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-header{background:linear-gradient(120deg,#2C0055,#6A16B8);color:#fff;padding:28px 0 56px}
-header img{height:38px}
-h1{font-size:clamp(40px,7vw,80px);line-height:1.1;margin-top:48px}
-header p{font-size:19px;opacity:.88;max-width:640px;margin-top:12px}
-h2{font-size:30px;margin:56px 0 18px}
-.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-.cmp{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;color:inherit;text-decoration:none;transition:box-shadow .15s}
-.cmp:hover{box-shadow:0 10px 26px rgba(44,0,85,.12)}
-.cmp img{width:92px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;background:#eee;flex:none}
-.cmp b{font-size:21px;display:block;line-height:1.3}
-.cmp small{color:var(--mut);font-size:14px;display:block}
-.chips{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}
-.chips span{background:#f1e9fb;color:var(--p);border-radius:6px;padding:0 8px;font-size:13px}
-.bar{height:6px;background:#eee;border-radius:9px;overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;background:var(--ok)}
-.cnt{font-size:13px;color:var(--mut);margin-top:4px}
-.empty{color:var(--mut);padding:22px;border:1px dashed var(--line);border-radius:14px;text-align:center}
-footer{color:var(--mut);text-align:center;padding:64px 0}
-@media(max-width:600px){.wrap{padding:0 16px}h2{font-size:24px;margin-top:40px}.cmp img{width:76px}}
+.hero{padding:64px 0 40px}
+.hero .h-display{font-size:clamp(38px,5.4vw,66px)}
+.hero .h-display{max-width:900px}
+.hero .sum{margin-top:18px;font-size:19px;color:var(--ink-2);max-width:760px}
+.hero .sum b{color:var(--ink)}
+.sec{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:44px 0 18px}
+.sec .small{font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,560px),1fr));gap:22px}
+.cmp{display:grid;grid-template-columns:200px 1fr;gap:26px;padding:22px;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s}
+.cmp:hover{box-shadow:var(--sh-l);transform:translateY(-2px)}
+.stack{position:relative;height:230px}
+.stack img{position:absolute;top:10px;width:118px;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:4px solid #fff;box-shadow:0 10px 24px rgba(27,21,48,.18);background:var(--line)}
+.stack img:nth-child(1){right:0;transform:rotate(4deg);z-index:3}
+.stack img:nth-child(2){right:42px;transform:rotate(-3deg);z-index:2;top:2px}
+.stack img:nth-child(3){right:84px;transform:rotate(-9deg);z-index:1;top:16px;opacity:.95}
+.cmp .body{display:flex;flex-direction:column;gap:10px;min-width:0}
+.cmp .title{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.15}
+.pis{display:flex;gap:6px}
+.pi{width:30px;height:30px;border-radius:50%;background:var(--line-2);display:grid;place-items:center;color:var(--ink-2)}
+.pi .ic{width:15px;height:15px}
+.cmp .strip{margin-top:auto}
+.cmp .go{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.cmp .go .btn{pointer-events:none}
+.arch{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:56px 1fr minmax(120px,280px) auto;gap:18px;align-items:center;padding:14px 18px;text-decoration:none;color:inherit;border-top:1px solid var(--line-2)}
+.row:first-child{border-top:0}
+.row:hover{background:#FCFAFF}
+.row img{width:56px;aspect-ratio:9/16;object-fit:cover;border-radius:8px;background:var(--line)}
+.row b{font-size:17px;font-weight:600;display:block}
+.empty{padding:40px 24px;text-align:center;color:var(--ink-2)}
+.empty .btn{margin-top:14px}
+@media(max-width:720px){
+ .hero{padding:36px 0 18px}.hero .sum{font-size:16px}
+ .cmp{grid-template-columns:1fr;gap:12px;padding:16px}
+ .stack{height:150px}.stack img{width:78px;border-width:3px;border-radius:10px}.stack img:nth-child(2){right:30px}.stack img:nth-child(3){right:60px}
+ .cmp .title{font-size:26px}
+ .row{grid-template-columns:44px 1fr auto;gap:12px;padding:12px}.row .strip{display:none}.row img{width:44px}
+}
 </style>
 </head>
 <body>
-<header><div class="wrap">
- <img src="a/logo-white.png" alt="أهداف">
- <h1>منصة التعميد</h1>
- <p>كل حملة لها صفحة: المحتوى كما يظهر على المنصات، والاعتماد والملاحظات تنحفظ عند كل من يفتح الرابط.</p>
-</div></header>
 <main class="wrap">
- <h2>حملات حالية</h2><div class="list" id="active"></div>
- <h2>حملات سابقة</h2><div class="list" id="archived"></div>
+ <section class="hero">
+  <div class="eyebrow"><span>أهداف</span><span>منصة التعميد</span></div>
+  <h1 class="h-display" style="margin-top:14px">المحتوى قبل النشر، في مكان واحد</h1>
+  <p class="sum" id="sum">نحمّل الحملات…</p>
+ </section>
+
+ <div class="sec"><h2 class="h2">حملات حالية</h2></div>
+ <div class="grid" id="active"></div>
+
+ <div class="sec"><h2 class="h2">حملات سابقة</h2><span class="small">محفوظة للرجوع لها، والتعميد فيها شغال</span></div>
+ <div class="panel arch" id="archived"></div>
 </main>
-<footer>أهداف · نربط الإبداع بالهدف · ahdaf.co · <a href="admin.html" style="color:inherit">إدارة الحملات</a></footer>
+<footer class="foot">أهداف · نربط الإبداع بالهدف · <a href="https://ahdaf.co">ahdaf.co</a></footer>
+
+<script src="icons.js"></script>
 <script src="shared.js"></script>
 <script>
-fetch('campaigns.json').then(r=>r.json()).then(list=>{
- for(const k of ['active','archived']){
-  const el=document.getElementById(k), L=list.filter(c=>(c.status||'active')===k);
-  el.innerHTML=L.length?'':`<div class="empty">${k==='active'?'ما فيه حملة حالية':'ما فيه حملات سابقة'}</div>`;
-  L.forEach(c=>{
-   const a=document.createElement('a'); a.className='cmp'; a.href=`campaign.html?c=${c.slug}`;
-   a.innerHTML=`<img src="campaigns/${c.slug}/${c.cover||'c/1.jpg'}" alt="" loading="lazy"><div style="flex:1;min-width:0">
-    <b>${esc(c.title)}</b><small>${esc([c.client,c.date].filter(Boolean).join(' · '))}</small>
-    <div class="chips">${(c.platforms||[]).map(p=>`<span>${PLAT[p].n}</span>`).join('')}</div>
-    <div class="bar"><i style="width:0"></i></div><div class="cnt">${c.count} مقطع</div></div>`;
-   el.appendChild(a);
-   // live approval progress
-   loadStates(c.slug).then(s=>{
-    let ok=0; for(const k in s)if(/^\d+$/.test(k)&&(s[k].v==='ok'||s[k].v==='final'))ok++;
-    a.querySelector('.bar i').style.width=(100*ok/c.count)+'%';
-    a.querySelector('.cnt').textContent=`${ok} معتمد من ${c.count} مقطع`;
-   }).catch(()=>{});
-  });
+topbar('home');
+const N=n=>n.toLocaleString('ar-SA-u-nu-latn');
+fetch('campaigns.json?'+Date.now()).then(r=>r.json()).then(async list=>{
+ const act=list.filter(c=>(c.status||'active')==='active'), arc=list.filter(c=>c.status==='archived');
+ const A=document.getElementById('active'), R=document.getElementById('archived');
+ A.innerHTML=act.length?'':`<div class="panel empty" style="grid-column:1/-1">ما فيه حملة حالية للتعميد.<br><a class="btn pri" href="admin.html">${ic('plus')}أضف حملة</a></div>`;
+ R.innerHTML=arc.length?'':'<div class="empty">ما فيه حملات سابقة.</div>';
+ let waiting=0, pending=act.length;
+ const done=()=>{ if(--pending>0)return;
+  document.getElementById('sum').innerHTML=act.length
+   ?`${act.length===1?'حملة وحدة':`<b>${N(act.length)}</b> حملات`} مفتوحة للتعميد، و<b>${N(waiting)}</b> مقطع بانتظار الرد.`
+   :'ما فيه شي بانتظار التعميد الحين.'};
+ if(!act.length){pending=1;done()}
+ for(const c of list){
+  const base=`campaigns/${c.slug}/`;
+  let C; try{C=await (await fetch(base+'campaign.json?'+Date.now())).json()}catch(e){if(c.status!=='archived')done();continue}
+  const posters=C.items.slice(0,3).map(it=>`<img src="${base}c/${it.i}.jpg?${C.rev||1}" alt="" loading="lazy">`).join('');
+  const el=document.createElement('a'); el.href=`campaign.html?c=${c.slug}`;
+  if(c.status==='archived'){
+   el.className='row';
+   el.innerHTML=`<img src="${base}c/${C.items[0]?.i}.jpg?${C.rev||1}" alt="" loading="lazy"><div><b>${esc(C.title)}</b><span class="small">${esc([C.client,C.date].filter(Boolean).join(' · '))} · ${N(C.items.length)} مقطع</span></div><div class="sw"></div>${ic('chevron-left')}`;
+   R.appendChild(el);
+  }else{
+   el.className='panel cmp';
+   el.innerHTML=`<div class="stack">${posters}</div><div class="body">
+    <div class="eyebrow">${[C.client,C.date].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+    <div class="title">${esc(C.title)}</div>
+    <div class="pis">${platIcons(C.platforms)}</div>
+    <div class="sw"></div><div class="lg small"></div>
+    <div class="go"><span class="small">${N(C.items.length)} مقطع${(C.posts||[]).length?` و${N(C.posts.length)} منشور`:''}</span><span class="btn sm pri">افتح الحملة ${ic('chevron-left')}</span></div></div>`;
+   A.appendChild(el);
+  }
+  const fill=st=>{el.querySelector('.sw').innerHTML=strip(C.items,st);
+   const lg=el.querySelector('.lg'); if(lg)lg.innerHTML=legend(tally(C.items,st))};
+  fill({});
+  loadStates(c.slug).then(st=>{fill(st);if(c.status!=='archived'){const t=tally(C.items,st);waiting+=t.none+t.done}})
+   .catch(()=>{}).finally(()=>{if(c.status!=='archived')done()});
  }
 });
 </script>
