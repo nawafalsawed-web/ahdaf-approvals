@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تعميد · أهداف</title>
+<meta name="description" content="صفحة تعميد محتوى من أهداف">
+<style>
+@font-face{font-family:SS;src:url(a/SaudiSerif-Regular.ttf);font-weight:400}
+@font-face{font-family:SS;src:url(a/SaudiSerif-Medium.ttf);font-weight:500}
+@font-face{font-family:SS;src:url(a/SaudiSerif-Bold.ttf);font-weight:700}
+:root{--p:#4C0192;--p2:#530396;--ink:#111;--mut:#6b6477;--line:#e6e0ee;--bg:#fbfafd;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:SS,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+header.hero{background:linear-gradient(120deg,#2C0055,#6A16B8);color:#fff;padding:28px 0 64px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top img{height:38px}
+.top span{font-size:15px;opacity:.8}
+.hero h1{font-size:clamp(40px,7vw,88px);line-height:1.1;margin-top:56px;font-weight:700}
+.hero p{font-size:20px;opacity:.88;max-width:640px;margin-top:14px}
+.stats{display:flex;gap:40px;margin-top:36px;flex-wrap:wrap}
+.stats b{display:block;font-size:40px;line-height:1}
+.stats small{opacity:.75;font-size:15px}
+section{padding:64px 0 8px}
+h2{font-size:36px;font-weight:700;line-height:1.2}
+.lead{color:var(--mut);font-size:18px;margin-top:8px;max-width:760px}
+.done{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:24px}
+.done div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.done b{display:block;font-size:18px;margin-bottom:4px}
+.done p{color:var(--mut);font-size:15px}
+.done .warn{border-color:#e9c46a;background:#fffaf0}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:28px;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{font:inherit;font-size:16px;border:0;background:none;padding:8px 18px;border-radius:999px;cursor:pointer;color:var(--mut)}
+.seg button.on{background:var(--p);color:#fff}
+label.chk{display:flex;gap:8px;align-items:center;font-size:15px;color:var(--mut);cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px 22px;margin-top:12px}
+.card{display:flex;flex-direction:column;gap:10px}
+.phone{position:relative;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#000;border:6px solid #15121a;box-shadow:0 12px 30px rgba(44,0,85,.18);container-type:inline-size}
+.phone video,.phone img.poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ui{position:absolute;inset:0;pointer-events:none;color:#fff;font-family:system-ui,-apple-system,sans-serif;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.ui .tabs{position:absolute;top:4.5%;width:100%;text-align:center;font-size:5.4cqw;font-weight:600;opacity:.95}
+.ui .tabs i{font-style:normal;opacity:.6;margin:0 3%}
+.ui .rail{position:absolute;right:2.6%;bottom:16%;display:flex;flex-direction:column;align-items:center;gap:5.5cqw;font-size:3.6cqw}
+.ui .rail svg{width:10cqw;height:10cqw;display:block;margin:0 auto 1cqw;fill:#fff}
+.ui .av{width:11cqw;height:11cqw;border-radius:50%;background:var(--p) url(a/logo-white.png) center/70% no-repeat;border:1.5px solid #fff}
+.ui .cap{position:absolute;left:4%;right:20%;bottom:4.5%;direction:rtl;text-align:right;font-size:4.2cqw;line-height:1.35}
+.ui .cap b{display:block;font-size:4.6cqw;margin-bottom:1cqw}
+.ui .cap small{display:block;opacity:.85;margin-top:1.5cqw;font-size:3.6cqw}
+.ui.ig .tabs{text-align:right;padding-right:5%;font-size:6.4cqw;font-weight:700}
+.ui.ig .rail{bottom:9%}
+.ui.ig .cap{bottom:3.5%}
+.safe{position:absolute;border:1.5px dashed #ffe066;pointer-events:none;display:none}
+.showsafe .safe{display:block}
+.play{position:absolute;inset:0;display:grid;place-items:center;cursor:pointer;background:none;border:0}
+.play span{width:64px;height:64px;border-radius:50%;background:rgba(76,1,146,.85);display:grid;place-items:center}
+.play svg{width:26px;fill:#fff;margin-left:-4px}
+.playing .play{display:none}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.meta b{font-size:17px;line-height:1.35}
+.meta span{color:var(--mut);font-size:14px;white-space:nowrap;font-family:system-ui}
+.tag{font-size:12px;background:#f1e9fb;color:var(--p);border-radius:6px;padding:1px 7px;margin-inline-start:6px;white-space:nowrap}
+.act{display:flex;gap:8px}
+.act button{flex:1;font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px;cursor:pointer}
+.act button.ok.on{background:#1f7a4d;border-color:#1f7a4d;color:#fff}
+.act button.fix.on{background:#b5651d;border-color:#b5651d;color:#fff}
+.act button.no.on{background:#9b1c1c;border-color:#9b1c1c;color:#fff}
+.card.rejected .phone,.card.cut .phone{opacity:.45}
+.goal{font-size:12px;background:#eef3f8;color:#2d4a66;border-radius:6px;padding:1px 7px;margin-inline-start:6px;white-space:nowrap}
+.goal.cut{background:#fbeaea;color:#9b1c1c}
+.dl{display:flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-size:14px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px;color:var(--p);text-decoration:none;font-weight:700}
+.dl:hover{background:#f4eefb}
+.dl svg{width:16px;height:16px}
+.why-cut{font-size:13px;color:#9b1c1c;margin:-4px 0 6px}
+.filt{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.filt button{font:inherit;font-size:14px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer;color:var(--mut)}
+.filt button.on{background:var(--p);border-color:var(--p);color:#fff}
+textarea{font:inherit;font-size:15px;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;resize:vertical;min-height:44px;display:none}
+.card.needfix textarea{display:block}
+.who{font-size:13px;color:var(--mut);min-height:1em}
+.done-tag{display:inline-block;background:#e7f5ee;color:#1f7a4d;font-weight:700;border-radius:6px;padding:1px 8px;margin-inline-end:4px}
+.req{font-size:13px;color:var(--mut);background:#faf8fc;border-radius:8px;padding:6px 10px}
+.send input{font:inherit;font-size:14px;border:0;border-radius:999px;padding:7px 12px;width:110px}
+.live{width:8px;height:8px;border-radius:50%;background:#25D366;display:inline-block;margin-inline-end:6px}
+.li{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;margin-top:28px;align-items:start}
+.why{display:flex;flex-direction:column;gap:12px}
+.opt{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.opt.pick{border:2px solid var(--p)}
+.opt b{font-size:18px}
+.opt p{color:var(--mut);font-size:15px}
+.post{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-family:system-ui,-apple-system,sans-serif}
+.post .hd{display:flex;gap:10px;padding:12px 14px;align-items:center}
+.post .hd i{width:46px;height:46px;background:var(--p) url(a/logo-white.png) center/70% no-repeat;flex:none}
+.post .hd b{font-size:15px;display:block}
+.post .hd small{color:#666;font-size:12px}
+.post .tx{padding:0 14px 12px;font-size:14px;line-height:1.6;white-space:pre-line}
+.post .vid{position:relative;aspect-ratio:9/16;background:#000;max-height:620px;margin:0 auto}
+.post .vid video{width:100%;height:100%;object-fit:contain;display:block}
+.post .ft{display:flex;justify-content:space-around;border-top:1px solid #eee;padding:10px;font-size:13px;color:#555}
+.iggrid{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:520px;margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 0 0;overflow:hidden}
+.ighd{direction:rtl;grid-column:1/-1;display:flex;gap:14px;align-items:center;padding:0 16px 14px;font-family:system-ui}
+.ighd i{width:64px;height:64px;border-radius:50%;background:var(--p) url(a/logo-white.png) center/62% no-repeat}
+.iggrid img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.send{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#15121a;color:#fff;border-radius:999px;padding:10px 12px 10px 20px;display:flex;gap:16px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:9;font-size:15px;white-space:nowrap}
+.send button{font:inherit;border:0;border-radius:999px;padding:8px 16px;background:#25D366;color:#fff;cursor:pointer}
+footer{padding:80px 0 120px;color:var(--mut);font-size:14px}
+.appr{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px;max-width:520px}
+.al{display:block;font-size:16px;margin-bottom:8px}
+label.chk{display:block}
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:22px}
+.day{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.day h4{font-size:16px;font-weight:700;display:flex;justify-content:space-between;margin-bottom:8px}
+.day h4 small{color:var(--mut);font-weight:400;font-size:13px}
+.slot{display:flex;gap:10px;align-items:center;padding:6px 0;border-top:1px solid #f2eef7}
+.slot:first-of-type{border-top:0}
+.slot img{width:38px;height:56px;object-fit:cover;border-radius:6px;flex:none}
+.slot .li-ic{width:38px;height:56px;border-radius:6px;background:#0A66C2;color:#fff;display:grid;place-items:center;font:700 16px system-ui;flex:none}
+.slot b{display:block;font-size:14px;line-height:1.35}
+.slot span{font-size:12px;color:var(--mut);font-family:system-ui}label.chk small{display:block;font-size:13px;opacity:.85;margin-top:2px}
+@media (max-width:860px){.li{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr);gap:20px 12px}.wrap{padding:0 16px}}
+@media (max-width:600px){
+ body{padding-bottom:72px}
+ header.hero{padding:20px 0 40px}.hero h1{margin-top:32px}.hero p{font-size:17px}
+ .stats{gap:22px}.stats b{font-size:30px}
+ section{padding:40px 0 4px}h2{font-size:28px}.lead{font-size:16px}
+ .bar{gap:8px}.seg button{padding:7px 14px;font-size:15px}label.chk{font-size:14px;align-items:flex-start}
+ .phone{border-width:4px;border-radius:18px}
+ .meta{flex-direction:column;gap:0}.meta b{font-size:14px}.meta span{font-size:12px}
+ .act{gap:6px}.act button{font-size:13px;padding:7px 4px}
+ .play span{width:48px;height:48px}
+ .send{left:0;right:0;bottom:0;transform:none;border-radius:16px 16px 0 0;padding:10px 12px;gap:8px;justify-content:space-between;font-size:13px}
+ .send input{width:84px;padding:7px 10px}.send button{padding:8px 12px}
+ .iggrid{max-width:100%}.appr{max-width:100%}
+ footer{padding:48px 0 100px}
+}
+
+.ui.snap .tabs{text-align:right;padding-right:5%;font-size:5cqw;display:flex;gap:2cqw;align-items:center;justify-content:flex-start}
+.ui.snap .tabs .av{width:9cqw;height:9cqw}
+.ui.snap .cap{right:5%;bottom:6%}
+.top a{color:#fff;opacity:.85;font-size:15px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}
+.chips span{background:rgba(255,255,255,.16);border-radius:999px;padding:3px 12px;font-size:14px}
+.arch{background:#fff7e6;border:1px solid #e9c46a;border-radius:12px;padding:10px 16px;margin-top:22px;font-size:15px}
+.views{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.views a{background:#fff;color:var(--p);border-radius:999px;padding:7px 16px;font-weight:700;text-decoration:none;font-size:15px}
+.views a.on{background:var(--p);color:#fff;box-shadow:0 0 0 2px #fff inset}
+.slot .li-ic.x{background:#000}
+.post .x-hd i{border-radius:50%}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="wrap">
+  <div class="top"><img src="a/logo-white.png" alt="أهداف"><a href="./">← كل الحملات</a></div>
+  <h1 id="title">…</h1>
+  <p id="intro"></p>
+  <div class="chips" id="chips"></div>
+  <div class="stats" id="stats"></div>
+  <div class="views" id="views"></div>
+  <div id="arch"></div>
+ </div>
+</header>
+<main class="wrap" id="main"></main>
+<footer class="wrap">أهداف · نربط الإبداع بالهدف · ahdaf.co</footer>
+<div class="send"><input id="me" placeholder="اسمك" maxlength="40"><span><i class="live"></i><span id="cnt">0 معتمد · 0 تعديل</span></span><button id="wa">إرسال الرد عبر واتساب</button></div>
+<script src="shared.js"></script>
+<script>
+const ICON={
+heart:'<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.8 8.2 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.1 1.8-1.9 3.3-3.1 5.4-3.1 3.6 0 5.8 3.7 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg>',
+com:'<svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 22l4.3-2.3c.9.2 1.8.3 2.7.3 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg>',
+save:'<svg viewBox="0 0 24 24"><path d="M6 2h12a1 1 0 0 1 1 1v19l-7-4.5L5 22V3a1 1 0 0 1 1-1z"/></svg>',
+share:'<svg viewBox="0 0 24 24"><path d="M14 4l8 8-8 8v-5c-6 0-9.5 1.8-12 6 1-6 4-11.5 12-12.5V4z"/></svg>',
+send:'<svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>'};
+const FILT=[['all','الكل'],['ok','معتمد'],['no','غير معتمد'],['fix','يحتاج تعديل'],['none','بدون رد'],['cut','مقترح نشيله']];
+const slug=qs('c')||'';
+let C, base, plat, st={}, filt='all', last='';
+const isOk=v=>v==='ok'||v==='final';
+const out=i=>{const it=C.items.find(x=>x.i===i);return (it&&it.cut)||(st[i]&&st[i].v==='no')};
+const med=(k,f)=>`${base}${k}/${f}?${C.rev||1}`;
+
+const timers={};
+function put(id){
+ const s=st[id]; s.by=me();
+ clearTimeout(timers[id]);
+ timers[id]=setTimeout(()=>saveState(slug,id,s).catch(()=>alert('ما انحفظ التعديل، جرّب مرة ثانية')),400);
+ count();
+}
+async function load(){
+ let n; try{n=await loadStates(slug)}catch(e){return}
+ const j=JSON.stringify(n); if(j===last)return;
+ // don't rebuild while someone is typing or watching; retry next poll
+ if(document.activeElement&&document.activeElement.tagName==='TEXTAREA')return;
+ if([...document.querySelectorAll('video')].some(v=>!v.paused))return;
+ last=j; st=n; render();
+}
+
+function ui(c){
+ const t=esc(c.t.replace(/\n/g,' '));
+ if(plat==='ig') return `<div class="ui ig"><div class="tabs">Reels</div>
+  <div class="rail"><div>${ICON.heart}12.4K</div><div>${ICON.com}318</div><div>${ICON.send}904</div><div>${ICON.save}</div></div>
+  <div class="cap"><b>ahdaf · متابعة</b>${t}<small>♫ الصوت الأصلي · ahdaf</small></div></div>`;
+ if(plat==='snap') return `<div class="ui snap"><div class="tabs"><div class="av"></div><b>أهداف</b></div>
+  <div class="cap">${t}</div></div>`;
+ return `<div class="ui"><div class="tabs"><i>متابَعون</i> لك</div>
+  <div class="rail"><div class="av"></div><div>${ICON.heart}12.4K</div><div>${ICON.com}318</div><div>${ICON.save}1.1K</div><div>${ICON.share}904</div></div>
+  <div class="cap"><b>@ahdaf</b>${t}<small>${esc(C.tags||'')}</small></div></div>`;
+}
+function safeBox(){const s=PLAT[plat].safe;return `<div class="safe" style="top:${s.t/19.2}%;bottom:${s.b/19.2}%;left:${s.s/10.8}%;right:${s.s/10.8}%"></div>`}
+
+function apprHTML(s){const v=s.v||'';return `<div class="act"><button class="ok ${isOk(v)?'on':''}">معتمد</button><button class="fix ${v==='fix'?'on':''}">يحتاج تعديل</button><button class="no ${v==='no'?'on':''}">غير معتمد</button></div>
+   <div class="who">${v==='final'?'✓ تعميد نهائي'+(s.by?' من '+esc(s.by):''):v==='ok'?'✓ معتمد'+(s.by?' من '+esc(s.by):''):v==='fix'?'تعديل'+(s.by?' من '+esc(s.by):''):v==='no'?'✕ غير معتمد، ما ينزل'+(s.by?' ('+esc(s.by)+')':''):v==='done'?'<span class="done-tag">✓ تم التعديل</span> لو فيه تعديل ثاني اضغط «يحتاج تعديل»':''}</div>
+   ${(v==='done'||v==='no')&&s.n?`<div class="req">الطلب: ${esc(s.n)}</div>`:''}
+   <textarea placeholder="وش التعديل المطلوب؟">${esc(s.n||'')}</textarea>`}
+function bind(el,id,re){
+ const s=st[id]||{};
+ el.querySelector('.ok').onclick=()=>{st[id]={...s,v:isOk(s.v)?'':'ok'};put(id);re()};
+ el.querySelector('.no').onclick=()=>{st[id]={...s,v:s.v==='no'?'':'no'};put(id);re()};
+ el.querySelector('.fix').onclick=()=>{st[id]={...s,v:s.v==='fix'?'':'fix',n:s.v==='done'?'':s.n};put(id);re()};
+ el.querySelector('textarea').oninput=e=>{st[id]={...(st[id]||{}),v:'fix',n:e.target.value};put(id)};
+}
+const dlBtn=(n,label)=>C.download?`<a class="dl" href="${dlUrl(C,n)}" download>${DL_ICON}${label}</a>`:'';
+
+function head(){
+ document.title=C.title+' · تعميد أهداف';
+ document.getElementById('title').textContent=C.title;
+ document.getElementById('intro').textContent=C.intro||'';
+ document.getElementById('chips').innerHTML=[C.client,C.date,...C.platforms.map(p=>PLAT[p].n)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
+ const vp=C.platforms.filter(p=>PLAT[p].v);
+ document.getElementById('stats').innerHTML=`<div><b>${C.items.length}</b><small>مقطع${vp.length?' ل'+platNames(vp):''}</small></div>`+
+  (C.posts||[]).map(p=>`<div><b>1</b><small>${esc(p.short||p.label)}</small></div>`).join('')+
+  `<div><b>${Math.round(C.items.reduce((a,c)=>a+(c.d||0),0)/60)}</b><small>دقيقة محتوى</small></div>`;
+ document.getElementById('views').innerHTML=`<a class="on" href="campaign.html?c=${slug}">صفحة التعميد</a><a href="approved.html?c=${slug}">المعتمد فقط ←</a>`;
+ if(C.status==='archived')document.getElementById('arch').innerHTML='<div class="arch" style="color:var(--ink)">حملة سابقة. الصفحة محفوظة كأرشيف، والتعميد فيها يبقى شغال لو احتجتوه.</div>';
+}
+function layout(){
+ const vp=C.platforms.filter(p=>PLAT[p].v); plat=vp[0]||'tt';
+ let h='';
+ if(C.notes)h+=`<section><h2>${esc(C.notes.title)}</h2><p class="lead">${esc(C.notes.lead||'')}</p><div class="done">${C.notes.items.map(x=>`<div${x.warn?' class="warn"':''}><b>${esc(x.b)}</b><p>${esc(x.p)}</p></div>`).join('')}</div></section>`;
+ h+=`<section><h2>المقاطع</h2><p class="lead">اضغط على أي مقطع لتشغيله.${vp.length>1?' بدّل بين المنصات لتشوف شكله على كل واحدة،':''} وفعّل المنطقة الآمنة لتشوف حدود أزرار التطبيق. الاعتماد والملاحظات تنحفظ وتظهر عند كل من يفتح الرابط. ${esc(C.items_lead||'')}</p>
+  <div class="bar">${vp.length>1?`<div class="seg" id="plat">${vp.map((p,k)=>`<button class="${k?'':'on'}" data-p="${p}">${PLAT[p].n}</button>`).join('')}</div>`:''}
+   <label class="chk"><input type="checkbox" id="safeT"> إظهار المنطقة الآمنة <small>(الإطار الأصفر: الجزء اللي ما تغطيه أزرار التطبيق ونصوصه، وأي شي مهم لازم يكون داخله)</small></label></div>
+  <div class="filt" id="filt"></div><div class="grid" id="grid"></div></section>`;
+ (C.posts||[]).forEach(p=>{
+  h+=`<section><h2>${esc(p.title||PLAT[p.platform].n)}</h2><p class="lead">${esc(p.lead||'')}</p><div class="li">
+   ${p.why?`<div class="why">${p.why.map(o=>`<div class="opt${o.pick?' pick':''}"><b>${esc(o.b)}</b><p>${esc(o.p)}</p></div>`).join('')}</div>`:'<div></div>'}
+   <div><div class="post"><div class="hd${p.platform==='x'?' x-hd':''}"><i></i><div><b>أهداف</b><small>${p.platform==='x'?'@ahdaf · الآن':'شركة تسويق وإعلام · الآن'}</small></div></div>
+    <div class="tx">${esc(p.text)}</div>
+    ${p.video?`<div class="vid"><video src="${med('v',p.video+'.mp4')}" poster="${med('c',p.video+'.jpg')}" controls playsinline preload="none"></video></div>`:''}
+    <div class="ft">${p.platform==='x'?'<span>رد</span><span>إعادة نشر</span><span>إعجاب</span><span>مشاركة</span>':'<span>أعجبني</span><span>تعليق</span><span>مشاركة</span><span>إرسال</span>'}</div></div>
+   ${p.dl?`<div style="max-width:520px;margin-top:14px">${dlBtn(p.dl,'تحميل المقطع')}</div>`:''}
+   <div class="appr card" data-id="${p.id}" data-label="${esc(p.label||p.title)}"></div></div></div></section>`;
+ });
+ if(C.calendar)h+=`<section><h2>جدول النشر المقترح</h2><p class="lead">${esc(C.calendar.lead||'')}</p><div class="cal" id="cal"></div><div class="appr card" data-id="calendar" data-label="جدول النشر"></div></section>`;
+ if(C.platforms.includes('ig')&&C.grid!==false)h+=`<section><h2>شبكة إنستقرام</h2><p class="lead">${esc((C.grid&&C.grid.lead)||'شكل الحساب بعد النشر. الشبكة تقص غلاف كل مقطع إلى 3:4.')}</p>
+  <div class="iggrid" id="igg"><div class="ighd"><i></i><div><b>ahdaf</b><br><small>أهداف · تسويق وإعلام</small></div></div>${C.items.slice().reverse().map(c=>`<img src="${med('c',c.i+'.jpg')}" loading="lazy" alt="">`).join('')}</div>
+  <div class="appr card" data-id="iggrid" data-label="شبكة إنستقرام (الأغلفة)"></div></section>`;
+ document.getElementById('main').innerHTML=h;
+ document.querySelectorAll('#plat button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#plat button').forEach(x=>x.classList.toggle('on',x===b));plat=b.dataset.p;render()});
+ document.getElementById('safeT').onchange=e=>document.getElementById('grid').classList.toggle('showsafe',e.target.checked);
+}
+function render(){
+ const g=document.getElementById('grid'); g.innerHTML='';
+ const hasCut=C.items.some(c=>c.cut);
+ document.getElementById('filt').innerHTML=FILT.filter(([k])=>k!=='cut'||hasCut).map(([k,l])=>`<button data-f="${k}" class="${filt===k?'on':''}">${l}</button>`).join('');
+ document.querySelectorAll('#filt button').forEach(b=>b.onclick=()=>{filt=b.dataset.f;render()});
+ C.items.forEach(c=>{
+  const s=st[c.i]||{}, v=s.v||'';
+  if(filt==='cut'?!c.cut:filt==='none'?(v&&v!=='done'):filt==='ok'?!isOk(v):filt!=='all'&&v!==filt)return;
+  const el=document.createElement('div');
+  el.className='card'+(v==='fix'?' needfix':'')+(v==='no'?' rejected':'')+(c.cut?' cut':'');
+  el.innerHTML=`<div class="phone"><img class="poster" src="${med('c',c.i+'.jpg')}" loading="lazy" alt="">${ui(c)}${safeBox()}
+   <button class="play" aria-label="تشغيل"><span><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span></button></div>
+   <div class="meta"><b>${pad(c.i)}. ${esc(c.t.replace(/\n/g,' '))}${c.added?'<span class="tag">كابشن مقترح</span>':''}${c.cut?'<span class="goal cut">مقترح نشيله</span>':c.goal?`<span class="goal">${esc(c.goal)}</span>`:''}</b><span>${fmt(c.d||0)}</span></div>
+   ${c.cut?`<div class="why-cut">ليش: ${esc(c.cut)}</div>`:''}
+   ${dlBtn(pad(c.i),'تحميل المقطع')}
+   ${apprHTML(s)}`;
+  const ph=el.querySelector('.phone');
+  el.querySelector('.play').onclick=()=>{
+   document.querySelectorAll('.phone video').forEach(x=>x.pause());
+   let vd=ph.querySelector('video');
+   if(!vd){vd=document.createElement('video');vd.src=med('v',c.i+'.mp4');vd.playsInline=true;vd.controls=true;ph.insertBefore(vd,ph.querySelector('.ui'))}
+   ph.classList.add('playing');vd.play();
+  };
+  bind(el,c.i,render);
+  g.appendChild(el);
+ });
+ renderExtra(); renderCal(); count();
+}
+function renderExtra(){
+ document.querySelectorAll('.appr').forEach(el=>{
+  const id=el.dataset.id, s=st[id]||{};
+  el.classList.toggle('needfix',s.v==='fix');
+  el.innerHTML=`<b class="al">اعتماد ${el.dataset.label}</b>`+apprHTML(s);
+  bind(el,id,()=>{renderExtra();count()});
+ });
+}
+function renderCal(){
+ const el=document.getElementById('cal'); if(!el)return;
+ const vp=C.platforms.filter(p=>PLAT[p].v), posts=C.posts||[];
+ el.innerHTML=C.calendar.days.map(([d,list],k)=>{
+  const dt=new Date(d+'T12:00:00');
+  const wd=dt.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{weekday:'long'});
+  const dm=dt.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{day:'numeric',month:'long'});
+  list=list.filter(x=>typeof x==='string'||!out(x)); const nums=list.filter(x=>typeof x==='number');
+  const rows=list.map(x=>{
+   if(typeof x==='string'){const p=posts.find(p=>p.id===x)||{platform:'li'};
+    return `<div class="slot"><div class="li-ic${p.platform==='x'?' x':''}">${p.platform==='x'?'𝕏':'in'}</div><div><b>${esc(p.short||p.label||x)}</b><span>${esc(p.time||'')} · ${PLAT[p.platform].n}</span></div></div>`}
+   const c=C.items.find(c=>c.i===x); const t=(C.calendar.times||[])[nums.indexOf(x)]||'';
+   return `<div class="slot"><img src="${med('c',x+'.jpg')}" alt="" loading="lazy"><div><b>${pad(x)}. ${esc(c.t.replace(/\n/g,' '))}</b><span>${t} · ${platNames(vp)}</span></div></div>`}).join('');
+  return `<div class="day"><h4>${wd} ${dm}<small>اليوم ${k+1}</small></h4>${rows}</div>`}).join('');
+}
+function count(){let o=0,f=0,dn=0,no=0;for(const k in st){const v=st[k].v;if(isOk(v))o++;if(v==='fix')f++;if(v==='done')dn++;if(v==='no')no++}
+ document.getElementById('cnt').textContent=`${o} معتمد · ${f} تعديل`+(no?` · ${no} غير معتمد`:'')+(dn?` · ${dn} تم`:'')}
+document.getElementById('wa').onclick=()=>{
+ const extra={calendar:'جدول النشر',iggrid:'شبكة إنستقرام'};(C.posts||[]).forEach(p=>extra[p.id]=p.short||p.label);
+ let ok=[],fx=[],dn=[],no=[];
+ C.items.forEach(c=>{const s=st[c.i];if(!s)return;const t=c.t.replace(/\n/g,' ');
+  if(s.v==='done')dn.push(c.i);if(s.v==='no')no.push(c.i);if(isOk(s.v))ok.push(c.i);if(s.v==='fix')fx.push(`${c.i}. ${t}: ${s.n||'بدون تفاصيل'}`)});
+ for(const id in extra){const s=st[id];if(!s)continue;
+  if(isOk(s.v))ok.push(extra[id]);if(s.v==='fix')fx.push(`${extra[id]}: ${s.n||'بدون تفاصيل'}`)}
+ const rest=C.items.length+Object.keys(extra).length-ok.length-fx.length-dn.length-no.length;
+ let m=`رد التعميد · ${C.title}\n\nمعتمد (${ok.length}): ${ok.join('، ')||'لا يوجد'}\n`;
+ if(fx.length)m+=`\nيحتاج تعديل (${fx.length}):\n${fx.join('\n')}\n`;
+ if(no.length)m+=`\nغير معتمد (${no.length}): ${no.join('، ')}\n`;
+ if(dn.length)m+=`\nتم تعديلها بانتظار الاعتماد (${dn.length}): ${dn.join('، ')}\n`;
+ if(rest>0)m+=`\nبدون رد: ${rest}\n`;
+ m+=`\n${location.href}`;
+ window.open('https://wa.me/?text='+encodeURIComponent(m),'_blank');
+};
+fetch(`campaigns/${slug}/campaign.json`).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{
+ C=d; base=`campaigns/${slug}/`; head(); layout(); render(); load(); setInterval(load,8000);
+}).catch(()=>{document.getElementById('title').textContent='الحملة مو موجودة';document.querySelector('.send').remove()});
+</script>
+</body>
+</html>
