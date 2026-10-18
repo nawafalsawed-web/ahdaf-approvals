@@ -43,7 +43,7 @@ footer{color:var(--mut);text-align:center;padding:64px 0}
  <h2>حملات حالية</h2><div class="list" id="active"></div>
  <h2>حملات سابقة</h2><div class="list" id="archived"></div>
 </main>
-<footer>أهداف · نربط الإبداع بالهدف · ahdaf.co</footer>
+<footer>أهداف · نربط الإبداع بالهدف · ahdaf.co · <a href="admin.html" style="color:inherit">إدارة الحملات</a></footer>
 <script src="shared.js"></script>
 <script>
 fetch('campaigns.json').then(r=>r.json()).then(list=>{
@@ -59,7 +59,7 @@ fetch('campaigns.json').then(r=>r.json()).then(list=>{
    el.appendChild(a);
    // live approval progress
    loadStates(c.slug).then(s=>{
-    let ok=0; for(let i=1;i<=c.count;i++){const v=(s[i]||{}).v;if(v==='ok'||v==='final')ok++}
+    let ok=0; for(const k in s)if(/^\d+$/.test(k)&&(s[k].v==='ok'||s[k].v==='final'))ok++;
     a.querySelector('.bar i').style.width=(100*ok/c.count)+'%';
     a.querySelector('.cnt').textContent=`${ok} معتمد من ${c.count} مقطع`;
    }).catch(()=>{});

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>إدارة الحملات · أهداف</title>
+<meta name="description" content="إضافة وتعديل حملات منصة التعميد">
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:SS;src:url(a/SaudiSerif-Regular.ttf);font-weight:400}
+@font-face{font-family:SS;src:url(a/SaudiSerif-Bold.ttf);font-weight:700}
+:root{--p:#4C0192;--ink:#111;--mut:#6b6477;--line:#e6e0ee;--bg:#fbfafd;--ok:#1f7a4d;--bad:#9b1c1c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:SS,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding-bottom:90px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+header{background:linear-gradient(120deg,#2C0055,#6A16B8);color:#fff;padding:22px 0 30px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top img{height:32px}.top a{color:#fff;opacity:.85;font-size:15px}
+h1{font-size:clamp(30px,5vw,52px);margin-top:26px;line-height:1.15}
+h2{font-size:24px;margin:34px 0 12px}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:12px}
+label{display:block;font-size:14px;color:var(--mut);margin-top:10px}
+input[type=text],input[type=date],input[type=password],textarea,select{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:#fff;color:var(--ink)}
+textarea{min-height:60px;resize:vertical}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 14px}
+.plats{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.plats label{margin:0;display:flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--ink);font-size:15px;cursor:pointer;background:#fff}
+button,.btn{font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 14px;cursor:pointer;color:var(--ink);text-decoration:none;display:inline-block}
+button.pri{background:var(--p);border-color:var(--p);color:#fff}
+button.mini{padding:2px 9px;font-size:14px}
+button:disabled{opacity:.5;cursor:default}
+.list{display:flex;gap:8px;flex-wrap:wrap}
+.list button.on{background:var(--p);color:#fff;border-color:var(--p)}
+.item{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:start;border-top:1px solid #f0ebf6;padding:12px 0}
+.item:first-child{border-top:0}
+.item img,.item .ph{width:72px;aspect-ratio:9/16;object-fit:cover;border-radius:8px;background:#eee}
+.item .n{font-weight:700}
+.item .ctl{display:flex;flex-direction:column;gap:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.note{font-size:14px;color:var(--mut)}
+.prog{font-size:13px;color:var(--p)}
+.err{color:var(--bad)}
+.okc{color:var(--ok)}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#15121a;color:#fff;padding:12px 0;z-index:5}
+.bar .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.bar span{font-size:15px}
+.hide{display:none}
+details summary{cursor:pointer;color:var(--p);font-weight:700;margin-top:6px}
+@media(max-width:600px){.wrap{padding:0 16px}.item{grid-template-columns:56px 1fr}.item .ctl{grid-column:1/-1;flex-direction:row}.item img,.item .ph{width:56px}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top"><img src="a/logo-white.png" alt="أهداف"><a href="./">← منصة التعميد</a></div>
+ <h1>إدارة الحملات</h1>
+</div></header>
+
+<main class="wrap">
+ <section id="auth" class="box hide">
+  <b>ربط المنصة بـGitHub (مرة وحدة على هذا الجهاز)</b>
+  <p class="note">المنصة تحفظ الحملات والمقاطع في ريبو الموقع، فتحتاج مفتاح وصول له. المفتاح ينحفظ في هذا المتصفح بس.</p>
+  <ol class="note" style="margin:8px 22px 0">
+   <li>افتح <a id="tokLink" target="_blank" rel="noopener">صفحة إنشاء المفتاح</a> (لازم تكون داخل حساب nawafalsawed-web).</li>
+   <li>في «Repository access» اختر «Only select repositories» ثم <b>ahdaf-approvals</b>.</li>
+   <li>تأكد إن «Contents» على «Read and write»، واضغط «Generate token» وانسخه.</li>
+  </ol>
+  <label>المفتاح</label><input type="password" id="tok" placeholder="github_pat_…" autocomplete="off">
+  <button class="pri" id="tokSave" style="margin-top:10px">ربط</button> <span id="tokMsg" class="note"></span>
+ </section>
+
+ <section id="app" class="hide">
+  <h2>الحملات</h2>
+  <div class="list" id="cList"></div>
+  <p class="note" style="margin-top:8px"><span id="who"></span> · <a href="#" id="logout">فصل الربط</a></p>
+
+  <div id="ed" class="hide">
+   <h2 id="edTitle">حملة</h2>
+   <div class="box">
+    <div class="row">
+     <div><label>اسم الحملة</label><input type="text" id="f_title"></div>
+     <div><label>العميل</label><input type="text" id="f_client"></div>
+     <div><label>التاريخ (مثل: نوفمبر 2026)</label><input type="text" id="f_date"></div>
+     <div><label>الحالة</label><select id="f_status"><option value="active">حملة حالية</option><option value="archived">حملة سابقة</option></select></div>
+    </div>
+    <div id="slugBox"><label>معرّف الرابط (حروف إنجليزية صغيرة وأرقام وشرطة، ما يتغيّر بعد الحفظ)</label><input type="text" id="f_slug" dir="ltr"></div>
+    <label>المنصات</label><div class="plats" id="f_plats"></div>
+    <label>سطر تعريفي تحت العنوان</label><textarea id="f_intro"></textarea>
+    <div class="row">
+     <div><label>هاشتاقات الكابشن</label><input type="text" id="f_tags" placeholder="#الحملة #أهداف"></div>
+     <div><label>ملاحظة فوق المقاطع (اختياري)</label><input type="text" id="f_lead"></div>
+    </div>
+   </div>
+
+   <h2>المقاطع</h2>
+   <div class="box">
+    <div id="items"></div>
+    <label class="btn" style="display:inline-block;margin-top:10px;color:var(--p);font-weight:700">+ إضافة مقاطع<input type="file" id="addVid" accept="video/*" multiple hidden></label>
+    <p class="note">المقطع يتصغّر لـ720p داخل المتصفح قبل الرفع (يحتاج كروم أو سفاري حديث). خلّ الصفحة مفتوحة لين يخلص.</p>
+   </div>
+
+   <h2>المنشورات (لينكدإن وإكس)</h2>
+   <div class="box"><div id="posts"></div><button id="addPost" style="margin-top:8px">+ منشور</button></div>
+
+   <h2>جدول النشر</h2>
+   <div class="box">
+    <label><input type="checkbox" id="calOn"> إظهار جدول النشر</label>
+    <div id="calBox">
+     <label>وصف الجدول</label><textarea id="calLead"></textarea>
+     <label>أوقات النشر بالترتيب (مفصولة بفاصلة)</label><input type="text" id="calTimes" placeholder="4:00 م، 9:00 م">
+     <div id="days"></div><button id="addDay" style="margin-top:8px">+ يوم</button>
+     <p class="note">في كل يوم اكتب أرقام المقاطع بالترتيب، ومعرّف المنشور لو فيه (مثل p1).</p>
+    </div>
+   </div>
+
+   <h2>ملاحظات للعميل (اختياري)</h2>
+   <div class="box">
+    <label>عنوان القسم</label><input type="text" id="nTitle" placeholder="وش سوينا في المقاطع">
+    <div id="notes"></div><button id="addNote" style="margin-top:8px">+ ملاحظة</button>
+   </div>
+  </div>
+ </section>
+</main>
+
+<div class="bar hide" id="bar"><div class="wrap"><span id="status">جاهز</span><div><a class="btn" id="viewLink" target="_blank" style="background:transparent;color:#fff;border-color:#555">فتح الصفحة</a> <button class="pri" id="save">حفظ ونشر</button></div></div></div>
+
+<script src="shared.js"></script>
+<script type="module">
+import {Input,Output,Conversion,ALL_FORMATS,BlobSource,Mp4OutputFormat,BufferTarget} from 'https://cdn.jsdelivr.net/npm/mediabunny@1.61.6/dist/bundles/mediabunny.min.mjs';
+
+const OWNER='nawafalsawed-web', REPO='ahdaf-approvals', API=`https://api.github.com/repos/${OWNER}/${REPO}`;
+const $=id=>document.getElementById(id);
+let tok='', index=[], C=null, slug='', isNew=false, staged={}, busy=0, dirty=false;
+try{tok=localStorage.getItem('ahdaf-gh-token')||''}catch(e){}
+
+$('tokLink').href=`https://github.com/settings/personal-access-tokens/new?name=ahdaf-approvals&description=${encodeURIComponent('منصة التعميد: رفع الحملات')}&target_name=${OWNER}&expires_in=none&contents=write`;
+
+async function gh(path,opt={}){
+ const r=await fetch(path.startsWith('http')?path:API+path,{...opt,headers:{Authorization:'Bearer '+tok,Accept:'application/vnd.github+json',...(opt.body?{'Content-Type':'application/json'}:{}),...(opt.headers||{})}});
+ if(!r.ok)throw new Error(`GitHub ${r.status}: ${(await r.text()).slice(0,160)}`);
+ return opt.raw?r.text():r.json();
+}
+// latest file from the repo (Pages lags ~1 min behind a commit)
+const readJson=async p=>JSON.parse(await gh(`/contents/${p}?ref=main&t=${Date.now()}`,{raw:true,headers:{Accept:'application/vnd.github.raw'}}));
+
+async function connect(){
+ try{
+  const u=await gh('https://api.github.com/user'); const repo=await gh('');
+  if(!repo.permissions||!repo.permissions.push)throw new Error('المفتاح ما عنده صلاحية كتابة على ahdaf-approvals');
+  $('who').textContent='مربوط باسم '+u.login;
+  $('auth').classList.add('hide'); $('app').classList.remove('hide');
+  index=await readJson('campaigns.json'); drawList();
+ }catch(e){$('auth').classList.remove('hide');$('app').classList.add('hide');$('tokMsg').textContent=tok?e.message:'';$('tokMsg').className='note err'}
+}
+$('tokSave').onclick=()=>{tok=$('tok').value.trim();try{localStorage.setItem('ahdaf-gh-token',tok)}catch(e){};$('tokMsg').textContent='نتحقق…';connect()};
+$('logout').onclick=e=>{e.preventDefault();try{localStorage.removeItem('ahdaf-gh-token')}catch(_){};tok='';location.reload()};
+
+function drawList(){
+ $('cList').innerHTML=index.map(c=>`<button data-s="${c.slug}" class="${c.slug===slug?'on':''}">${esc(c.title)}${c.status==='archived'?' <small>(سابقة)</small>':''}</button>`).join('')+`<button data-s="" class="${isNew?'on':''}" style="color:var(--p);font-weight:700">+ حملة جديدة</button>`;
+ $('cList').querySelectorAll('button').forEach(b=>b.onclick=()=>open(b.dataset.s));
+}
+async function open(s){
+ if(busy)return alert('استنى لين يخلص تجهيز المقاطع');
+ if(dirty&&!confirm('فيه تعديلات ما انحفظت، تبي تتركها؟'))return;
+ staged={}; dirty=false; slug=s; isNew=!s;
+ C=isNew?{title:'',client:'',date:'',status:'active',platforms:['tt','ig'],intro:'المحتوى معروض كما سيظهر على المنصات، جاهز للتعميد.',tags:'',items:[],posts:[],rev:'1'}:await readJson(`campaigns/${s}/campaign.json`);
+ if(isNew)slug='c-'+new Date().toISOString().slice(2,10).replace(/-/g,'')+'-'+Math.random().toString(36).slice(2,6);
+ drawList(); fill(); $('ed').classList.remove('hide'); $('bar').classList.remove('hide');
+ $('edTitle').textContent=isNew?'حملة جديدة':C.title;
+ $('viewLink').href=`campaign.html?c=${slug}`; $('viewLink').classList.toggle('hide',isNew);
+ setStatus('جاهز');
+}
+
+// ---------- form <-> C ----------
+function fill(){
+ for(const k of ['title','client','date','status','intro','tags'])$('f_'+k).value=C[k]||'';
+ $('f_lead').value=C.items_lead||''; $('f_slug').value=slug; $('slugBox').classList.toggle('hide',!isNew);
+ $('f_plats').innerHTML=Object.keys(PLAT).map(p=>`<label><input type="checkbox" value="${p}" ${C.platforms.includes(p)?'checked':''}> ${PLAT[p].n}</label>`).join('');
+ $('calOn').checked=!!C.calendar; const cal=C.calendar||{lead:'',times:[],days:[]};
+ $('calLead').value=cal.lead||''; $('calTimes').value=(cal.times||[]).join('، ');
+ $('nTitle').value=(C.notes&&C.notes.title)||'';
+ drawItems(); drawPosts(); drawDays(cal.days||[]); drawNotes((C.notes&&C.notes.items)||[]); $('calBox').classList.toggle('hide',!C.calendar);
+}
+function collect(){
+ for(const k of ['title','client','date','status','intro','tags'])C[k]=$('f_'+k).value.trim();
+ C.items_lead=$('f_lead').value.trim();
+ C.platforms=[...$('f_plats').querySelectorAll('input:checked')].map(x=>x.value);
+ C.items.forEach(it=>{const r=document.querySelector(`.item[data-i="${it.i}"]`);if(!r)return;
+  it.t=r.querySelector('.t').value.trim(); setOpt(it,'goal',r.querySelector('.g').value.trim()); setOpt(it,'cut',r.querySelector('.cu').value.trim())});
+ C.posts=[...document.querySelectorAll('.post')].map(r=>{const p=C.posts.find(x=>x.id===r.dataset.id)||{id:r.dataset.id};
+  p.platform=r.querySelector('.pl').value; p.short=r.querySelector('.sh').value.trim(); p.label=p.short; p.title=PLAT[p.platform].n;
+  p.text=r.querySelector('.tx').value; p.time=r.querySelector('.tm').value.trim(); return p});
+ if($('calOn').checked){
+  C.calendar={...(C.calendar||{}),lead:$('calLead').value.trim(),times:$('calTimes').value.split(/[،,]/).map(x=>x.trim()).filter(Boolean),
+   days:[...document.querySelectorAll('.day')].map(r=>[r.querySelector('.dd').value,r.querySelector('.di').value.split(/[،,\s]+/).filter(Boolean).map(x=>/^\d+$/.test(x)?+x:x)]).filter(d=>d[0])};
+ }else delete C.calendar;
+ const ns=[...document.querySelectorAll('.noteRow')].map(r=>({b:r.querySelector('.nb').value.trim(),p:r.querySelector('.np').value.trim(),...(r.querySelector('.nw').checked?{warn:true}:{})})).filter(n=>n.b||n.p);
+ if(ns.length)C.notes={title:$('nTitle').value.trim()||'ملاحظات',lead:(C.notes&&C.notes.lead)||'',items:ns};else delete C.notes;
+}
+const setOpt=(o,k,v)=>{if(v)o[k]=v;else delete o[k]};
+document.addEventListener('input',e=>{if(e.target.closest('#ed'))dirty=true});
+$('calOn').onchange=e=>$('calBox').classList.toggle('hide',!e.target.checked);
+
+const thumb=id=>staged[`c/${id}.jpg`]?URL.createObjectURL(staged[`c/${id}.jpg`]):`campaigns/${slug}/c/${id}.jpg?${C.rev}`;
+function drawItems(){
+ $('items').innerHTML=C.items.length?C.items.map((it,k)=>`<div class="item" data-i="${it.i}">
+   <img src="${thumb(it.i)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+   <div><span class="n">${pad(it.i)}</span> <span class="note">${fmt(it.d||0)}</span>
+    <textarea class="t" placeholder="الكابشن (سطر جديد = سطر في البوست)">${esc(it.t||'')}</textarea>
+    <div class="two"><input type="text" class="g" placeholder="الهدف (تفاعل، معلومة، قصة…)" value="${esc(it.goal||'')}"><input type="text" class="cu" placeholder="مقترح نشيله؟ اكتب السبب" value="${esc(it.cut||'')}"></div></div>
+   <div class="ctl"><button class="mini" data-a="up" ${k?'':'disabled'}>↑</button><button class="mini" data-a="dn" ${k<C.items.length-1?'':'disabled'}>↓</button><button class="mini" data-a="rm" title="حذف">✕</button></div></div>`).join('')
+  :'<p class="note">ما فيه مقاطع للحين.</p>';
+ $('items').querySelectorAll('.ctl button').forEach(b=>b.onclick=()=>{
+  collect(); const i=+b.closest('.item').dataset.i, k=C.items.findIndex(x=>x.i===i);
+  if(b.dataset.a==='rm'){if(!confirm(`حذف المقطع ${pad(i)} من الحملة؟`))return;C.items.splice(k,1)}
+  else{const j=b.dataset.a==='up'?k-1:k+1;[C.items[k],C.items[j]]=[C.items[j],C.items[k]]}
+  dirty=true; drawItems()});
+}
+function drawPosts(){
+ $('posts').innerHTML=(C.posts||[]).map(p=>`<div class="post box" data-id="${p.id}" style="margin-top:8px">
+  <div class="row"><div><label>المنصة</label><select class="pl">${['li','x'].map(x=>`<option value="${x}" ${p.platform===x?'selected':''}>${PLAT[x].n}</option>`).join('')}</select></div>
+  <div><label>اسم قصير (معرّفه في الجدول: <b dir="ltr">${p.id}</b>)</label><input type="text" class="sh" value="${esc(p.short||p.label||'')}"></div>
+  <div><label>وقت النشر</label><input type="text" class="tm" value="${esc(p.time||'')}" placeholder="10:00 ص"></div></div>
+  <label>نص المنشور</label><textarea class="tx" style="min-height:110px">${esc(p.text||'')}</textarea>
+  <div style="margin-top:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+   <label class="btn" style="margin:0">${p.video?'تغيير الفيديو':'+ فيديو'}<input type="file" class="pv" accept="video/*" hidden></label>
+   <span class="note pvs">${p.video?(staged[`v/${p.video}.mp4`]?'فيديو جديد جاهز':'فيه فيديو'):'بدون فيديو'}</span>
+   <button class="mini prm" style="margin-inline-start:auto">حذف المنشور</button></div></div>`).join('');
+ $('posts').querySelectorAll('.post').forEach(r=>{
+  r.querySelector('.prm').onclick=()=>{if(!confirm('حذف المنشور؟'))return;collect();C.posts=C.posts.filter(p=>p.id!==r.dataset.id);dirty=true;drawPosts()};
+  r.querySelector('.pv').onchange=async e=>{const f=e.target.files[0];if(!f)return;collect();const p=C.posts.find(x=>x.id===r.dataset.id);
+   const s=r.querySelector('.pvs'); await prepare(f,p.id,t=>s.textContent=t); p.video=p.id; dirty=true; drawPosts()};
+ });
+}
+$('addPost').onclick=()=>{collect();let n=1;while((C.posts||[]).some(p=>p.id==='p'+n))n++;(C.posts=C.posts||[]).push({id:'p'+n,platform:'li',short:'منشور لينكدإن',text:''});dirty=true;drawPosts()};
+function drawDays(days){
+ $('days').innerHTML=days.map(([d,l])=>dayRow(d,l)).join(''); bindDays();
+}
+const dayRow=(d,l)=>`<div class="day two" style="grid-template-columns:170px 1fr auto"><input type="date" class="dd" value="${d||''}"><input type="text" class="di" value="${esc((l||[]).join('، '))}" placeholder="مثال: p1، 3، 7، 12"><button class="mini drm">✕</button></div>`;
+function bindDays(){$('days').querySelectorAll('.drm').forEach(b=>b.onclick=()=>{b.parentElement.remove();dirty=true})}
+$('addDay').onclick=()=>{$('days').insertAdjacentHTML('beforeend',dayRow('',[]));bindDays();dirty=true};
+function drawNotes(ns){$('notes').innerHTML=ns.map(noteRow).join('');bindNotes()}
+const noteRow=n=>`<div class="noteRow two" style="grid-template-columns:1fr 2fr auto auto;align-items:center"><input type="text" class="nb" value="${esc(n.b||'')}" placeholder="العنوان"><input type="text" class="np" value="${esc(n.p||'')}" placeholder="الشرح"><label style="margin:0"><input type="checkbox" class="nw" ${n.warn?'checked':''}> تنبيه</label><button class="mini nrm">✕</button></div>`;
+function bindNotes(){$('notes').querySelectorAll('.nrm').forEach(b=>b.onclick=()=>{b.parentElement.remove();dirty=true})}
+$('addNote').onclick=()=>{$('notes').insertAdjacentHTML('beforeend',noteRow({}));bindNotes();dirty=true};
+
+// ---------- video: 720p web copy + poster, in the browser ----------
+async function prepare(file,id,say){
+ busy++; $('save').disabled=true;
+ try{
+  say('نقرأ المقطع…');
+  const input=new Input({source:new BlobSource(file),formats:ALL_FORMATS});
+  const d=await input.computeDuration();
+  const output=new Output({format:new Mp4OutputFormat({fastStart:'in-memory'}),target:new BufferTarget()});
+  const conv=await Conversion.init({input,output,video:{width:720,height:1280,fit:'contain',codec:'avc',bitrate:1_800_000,frameRate:30},audio:{codec:'aac',bitrate:96_000},showWarnings:false});
+  if(!conv.isValid)throw new Error('صيغة المقطع ما تنقرأ في هذا المتصفح');
+  conv.onProgress=p=>say(`نجهّز ${Math.round(p*100)}٪`);
+  await conv.execute();
+  const mp4=new Blob([output.target.buffer],{type:'video/mp4'});
+  if(mp4.size>95e6)throw new Error('المقطع بعد التصغير أكبر من 95MB، قصّه لأقل');
+  staged[`v/${id}.mp4`]=mp4; staged[`c/${id}.jpg`]=await poster(mp4,d);
+  say('✓ جاهز للحفظ'); return Math.round(d*10)/10;
+ }catch(e){say('✕ '+e.message);throw e}
+ finally{busy--; if(!busy)$('save').disabled=false}
+}
+function poster(blob,d){
+ return new Promise((res,rej)=>{
+  const v=document.createElement('video'); v.muted=true; v.playsInline=true; v.src=URL.createObjectURL(blob);
+  v.onloadeddata=()=>{v.currentTime=Math.min(d/3,4)};
+  v.onseeked=()=>{const c=document.createElement('canvas');c.width=540;c.height=Math.round(540*v.videoHeight/v.videoWidth);
+   c.getContext('2d').drawImage(v,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(v.src);b?res(b):rej(new Error('poster'))},'image/jpeg',.85)};
+  v.onerror=()=>rej(new Error('ما قدرنا نطلع غلاف'));
+ });
+}
+$('addVid').onchange=async e=>{
+ collect(); const files=[...e.target.files]; e.target.value='';
+ for(const f of files){
+  const i=Math.max(0,...C.items.map(x=>x.i))+1;
+  const it={i,t:f.name.replace(/\.[^.]+$/,''),d:0}; C.items.push(it); dirty=true; drawItems();
+  const row=document.querySelector(`.item[data-i="${i}"]`); const s=document.createElement('div'); s.className='prog'; row.children[1].appendChild(s);
+  try{it.d=await prepare(f,i,t=>s.textContent=t)}catch(err){C.items=C.items.filter(x=>x!==it)}
+  collect(); drawItems();
+ }
+};
+
+// ---------- save: one commit with media + json ----------
+const b64=blob=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(blob)});
+const utf8b64=s=>b64(new Blob([s],{type:'application/json'}));
+function setStatus(t,cls=''){$('status').textContent=t;$('status').className=cls}
+$('save').onclick=async()=>{
+ collect();
+ if(isNew){slug=$('f_slug').value.trim();
+  if(!/^[a-z0-9-]{2,40}$/.test(slug))return alert('معرّف الرابط: حروف إنجليزية صغيرة وأرقام وشرطة فقط');
+  if(index.some(c=>c.slug===slug))return alert('المعرّف مستخدم لحملة ثانية')}
+ if(!C.title)return alert('اكتب اسم الحملة');
+ if(!C.platforms.length)return alert('اختر منصة وحدة على الأقل');
+ if(!C.items.length)return alert('أضف مقطع واحد على الأقل');
+ $('save').disabled=true;
+ try{
+  const media=Object.keys(staged);
+  if(media.length)C.rev=String((+C.rev||0)+1);
+  const files={};
+  let k=0; for(const p of media){setStatus(`نرفع ${++k}/${media.length}…`);
+   files[`campaigns/${slug}/${p}`]=(await gh('/git/blobs',{method:'POST',body:JSON.stringify({content:await b64(staged[p]),encoding:'base64'})})).sha}
+  setStatus('نحفظ…');
+  index=await readJson('campaigns.json'); // newest, in case someone else saved meanwhile
+  const entry={slug,title:C.title,client:C.client,date:C.date,status:C.status,platforms:C.platforms,count:C.items.length,cover:`c/${C.items[0].i}.jpg`};
+  const at=index.findIndex(c=>c.slug===slug); if(at<0)index.unshift(entry);else index[at]=entry;
+  for(const [p,s] of [[`campaigns/${slug}/campaign.json`,JSON.stringify(C,null,1)],['campaigns.json',JSON.stringify(index,null,1)]])
+   files[p]=(await gh('/git/blobs',{method:'POST',body:JSON.stringify({content:await utf8b64(s),encoding:'base64'})})).sha;
+  const head=(await gh('/git/ref/heads/main')).object.sha, baseTree=(await gh('/git/commits/'+head)).tree.sha;
+  const tree=(await gh('/git/trees',{method:'POST',body:JSON.stringify({base_tree:baseTree,tree:Object.entries(files).map(([path,sha])=>({path,mode:'100644',type:'blob',sha}))})})).sha;
+  const commit=(await gh('/git/commits',{method:'POST',body:JSON.stringify({message:`${isNew?'حملة جديدة':'تعديل'}: ${C.title}`,tree,parents:[head]})})).sha;
+  await gh('/git/refs/heads/main',{method:'PATCH',body:JSON.stringify({sha:commit})});
+  staged={}; dirty=false; isNew=false; drawList(); fill();
+  $('viewLink').href=`campaign.html?c=${slug}`; $('viewLink').classList.remove('hide'); $('edTitle').textContent=C.title;
+  setStatus('✓ انحفظ. يظهر في الموقع خلال دقيقة تقريباً','okc');
+ }catch(e){setStatus('✕ ما انحفظ: '+e.message,'err')}
+ finally{$('save').disabled=false}
+};
+addEventListener('beforeunload',e=>{if(dirty||busy){e.preventDefault();e.returnValue=''}});
+if(tok)connect();else $('auth').classList.remove('hide');
+</script>
+</body>
+</html>

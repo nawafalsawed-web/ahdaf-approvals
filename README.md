@@ -9,6 +9,10 @@
 
 ## حملة جديدة
 
+من المنصة: `admin.html` (إدارة الحملات). يحتاج مفتاح GitHub بصلاحية Contents على هذا الريبو، ينحفظ في المتصفح. المقاطع تتصغّر لـ720p في المتصفح (mediabunny) وكل الحفظ commit واحد عبر Git Data API.
+
+أو من الجهاز:
+
     python3 tools/new_campaign.py SLUG "العنوان" ~/path/to/finals --platforms tt,ig,snap --client "العميل" --date "نوفمبر 2026"
 
 بعدها عدّل الكابشنات (`t`) في `campaign.json` وادفع. المنصات: `tt` `ig` `snap` `x` `li`.
